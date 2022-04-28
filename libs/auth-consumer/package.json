@@ -1,5 +1,5 @@
 {
-  "name": "@polycode/event-consumer",
+  "name": "@polycode/auth-consumer",
   "version": "0.0.1",
   "type": "commonjs"
 }

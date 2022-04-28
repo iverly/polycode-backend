@@ -1,5 +1,17 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Role } from '../models/Role.model';
+import { SubjectType } from '../models/Subject.model';
 import { TokenService } from './token.service';
+
+export interface AuthorizeResponse {
+  status: string;
+  subject?: {
+    id: string;
+    type: SubjectType;
+    internalIdentifier: string;
+  };
+  roles?: Role[];
+}
 
 @Injectable()
 export class AuthService {
@@ -11,7 +23,7 @@ export class AuthService {
    * @param {string} authorizationHeader - The authorization header that was passed in the request.
    * @returns The token is being returned.
    */
-  async authorize(authorizationHeader: string) {
+  async authorize(authorizationHeader: string): Promise<AuthorizeResponse> {
     if (!authorizationHeader) {
       throw new UnauthorizedException();
     }

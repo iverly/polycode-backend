@@ -1,5 +1,5 @@
 {
-  "name": "@polycode/backend/auth-provider",
+  "name": "@polycode/auth-provider",
   "version": "0.0.1",
   "type": "commonjs"
 }

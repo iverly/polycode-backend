@@ -6,6 +6,11 @@ import { Environment } from '@polycode/env';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { validate } from './env.validation';
+import {
+  AuthProviderModule,
+  sequelizeModels as AuthSequelizeModels,
+} from '@polycode/auth-provider';
+import { AuthConsumerModule } from '@polycode/auth-consumer';
 
 @Module({
   imports: [
@@ -33,11 +38,13 @@ import { validate } from './env.validation';
         min: process.env.NODE_ENV === Environment.PRODUCTION ? 20 : 2,
         idle: 5000,
       },
-      models: [],
+      models: [...AuthSequelizeModels],
       define: {
         underscored: true,
       },
     }),
+    AuthProviderModule,
+    AuthConsumerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

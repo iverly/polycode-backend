@@ -27,6 +27,6 @@ import { AuthController } from './auth.controller';
     SubjectService,
     CryptoService,
   ],
-  exports: [],
+  exports: [AuthService],
 })
 export class AuthProviderModule {}
