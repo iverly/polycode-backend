@@ -34,7 +34,7 @@ export class SubjectService {
             },
           },
         ],
-      }),
+      })
     );
 
     if (err) {
@@ -49,7 +49,7 @@ export class SubjectService {
     if (
       !(await this.cryptoService.compareBcrypt(
         secret,
-        subject.credentials.secret,
+        subject.credentials.secret
       ))
     ) {
       throw new UnauthorizedException('Invalid subject: secret is invalid');

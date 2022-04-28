@@ -11,7 +11,7 @@ import { TokenType } from '../models/OAuth2Token.model';
 export class OAuth2Service {
   constructor(
     private readonly tokenService: TokenService,
-    private readonly subjectService: SubjectService,
+    private readonly subjectService: SubjectService
   ) {}
 
   /**
@@ -21,14 +21,14 @@ export class OAuth2Service {
    * @returns The access token and an optional refresh token
    */
   async authenticate(
-    oAuth2AuthenticateDto: OAuth2AuthenticateDto,
+    oAuth2AuthenticateDto: OAuth2AuthenticateDto
   ): Promise<any> {
     if (oAuth2AuthenticateDto.grant_type === OAuth2ClientGrant.IMPLICIT) {
       return this.handleImplicitGrant(oAuth2AuthenticateDto);
     }
 
     throw new BadRequestException(
-      'Invalid grant_type: grant_type is not supported',
+      'Invalid grant_type: grant_type is not supported'
     );
   }
 
@@ -40,24 +40,24 @@ export class OAuth2Service {
   async handleImplicitGrant(oAuth2AuthenticateDto: OAuth2AuthenticateDto) {
     const subject = await this.subjectService.getByCredentials(
       oAuth2AuthenticateDto.identity,
-      oAuth2AuthenticateDto.secret,
+      oAuth2AuthenticateDto.secret
     );
 
     const expiresAt = this.getExpirationDateByGrantType(
-      OAuth2ClientGrant.IMPLICIT,
+      OAuth2ClientGrant.IMPLICIT
     );
 
     const accessToken = this.tokenService.createSubjectAccessToken(
       subject,
       null,
-      expiresAt,
+      expiresAt
     );
     await this.tokenService.saveToken(
       accessToken,
       expiresAt,
       TokenType.ACCESS_TOKEN,
       OAuth2ClientGrant.IMPLICIT,
-      subject,
+      subject
     );
 
     return {

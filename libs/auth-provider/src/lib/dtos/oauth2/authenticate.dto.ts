@@ -15,16 +15,16 @@ export class OAuth2AuthenticateDto {
 
   @ValidateIf((o) =>
     [OAuth2ClientGrant.IMPLICIT, OAuth2ClientGrant.PASSWORD].includes(
-      o.grant_type,
-    ),
+      o.grant_type
+    )
   )
   @IsString()
   identity: string;
 
   @ValidateIf((o) =>
     [OAuth2ClientGrant.IMPLICIT, OAuth2ClientGrant.PASSWORD].includes(
-      o.grant_type,
-    ),
+      o.grant_type
+    )
   )
   @IsString()
   secret: string;

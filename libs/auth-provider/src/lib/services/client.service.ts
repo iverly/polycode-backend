@@ -36,7 +36,7 @@ export class ClientService {
             as: 'redirectUris',
           },
         ],
-      }),
+      })
     );
 
     if (err) {

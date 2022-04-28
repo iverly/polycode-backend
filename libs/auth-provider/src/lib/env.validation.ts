@@ -22,7 +22,7 @@ class EnvironmentVariables {
     { protocols: ['https'] },
     {
       message: 'The environment variable "AUTH_JWT_SECRET" must be a string',
-    },
+    }
   )
   AUTH_JWT_ISSUER: string;
 
@@ -30,7 +30,7 @@ class EnvironmentVariables {
     { protocols: ['https'] },
     {
       message: 'The environment variable "AUTH_JWT_AUDIENCE" must be a string',
-    },
+    }
   )
   AUTH_JWT_AUDIENCE: string;
 }

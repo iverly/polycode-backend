@@ -22,7 +22,7 @@ export class TokenService {
 
   constructor(
     private readonly jwtService: JwtService,
-    private readonly encryptService: CryptoService,
+    private readonly encryptService: CryptoService
   ) {}
 
   /**
@@ -73,7 +73,7 @@ export class TokenService {
             required: false,
           },
         ],
-      }),
+      })
     );
 
     if (err) {
@@ -118,7 +118,7 @@ export class TokenService {
   createSubjectAccessToken(
     subject: Subject,
     client: OAuth2Client,
-    expireAt: Date,
+    expireAt: Date
   ): string {
     return this.createToken(
       {
@@ -128,7 +128,7 @@ export class TokenService {
         type: TokenType.ACCESS_TOKEN,
         ...(client && { requested_client_id: client.id }),
       },
-      { expiresIn: this.calculateMillisecondsUntilExpiration(expireAt) },
+      { expiresIn: this.calculateMillisecondsUntilExpiration(expireAt) }
     );
   }
 
@@ -143,7 +143,7 @@ export class TokenService {
   createSubjectRefreshToken(
     subject: Subject,
     client: OAuth2Client,
-    expireAt: Date,
+    expireAt: Date
   ): string {
     return this.createToken(
       {
@@ -153,7 +153,7 @@ export class TokenService {
         type: TokenType.REFRESH_TOKEN,
         ...(client && { requested_client_id: client.id }),
       },
-      { expiresIn: this.calculateMillisecondsUntilExpiration(expireAt) },
+      { expiresIn: this.calculateMillisecondsUntilExpiration(expireAt) }
     );
   }
 
@@ -187,7 +187,7 @@ export class TokenService {
     type: TokenType,
     grant: OAuth2ClientGrant,
     subject?: Subject,
-    client?: OAuth2Client,
+    client?: OAuth2Client
   ): Promise<void> {
     if (!subject && !client) {
       throw new PreconditionFailedException();

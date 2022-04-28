@@ -7,7 +7,7 @@ import { AuthService } from './services/auth.service';
 export class AuthController {
   constructor(
     private readonly oAuth2Service: OAuth2Service,
-    private readonly authService: AuthService,
+    private readonly authService: AuthService
   ) {}
 
   @Post('/token')

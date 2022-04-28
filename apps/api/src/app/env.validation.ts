@@ -32,7 +32,7 @@ class EnvironmentVariables {
     {},
     {
       message: 'The environment variable "AUTH_DATABASE_PORT" must be a number',
-    },
+    }
   )
   AUTH_DATABASE_PORT: number;
 }
