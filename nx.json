@@ -22,10 +22,12 @@
     }
   },
   "targetDependencies": {
-    "build": [{
-      "target": "build",
-      "projects": "dependencies"
-    }]
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   },
   "defaultProject": "api"
 }
