@@ -1,5 +1,5 @@
 {
-  "npmScope": "polycode-backend",
+  "npmScope": "@polycode/backend",
   "affected": {
     "defaultBase": "main"
   },
@@ -22,12 +22,10 @@
     }
   },
   "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
+    "build": [{
+      "target": "build",
+      "projects": "dependencies"
+    }]
   },
   "defaultProject": "api"
 }
