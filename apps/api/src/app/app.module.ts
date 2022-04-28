@@ -3,8 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Environment } from '@polycode/env';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { validate } from './env.validation';
 import {
   AuthProviderModule,
@@ -46,7 +44,7 @@ import { AuthConsumerModule } from '@polycode/auth-consumer';
     AuthProviderModule,
     AuthConsumerModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
