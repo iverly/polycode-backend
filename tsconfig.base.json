@@ -16,6 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@polycode/event": ["libs/event/src/index.ts"],
+      "@polycode/event-consumer": ["libs/event-consumer/src/index.ts"],
       "@polycode/auth-provider": ["libs/auth-provider/src/index.ts"],
       "@polycode/env": ["libs/env/src/index.ts"]
     }

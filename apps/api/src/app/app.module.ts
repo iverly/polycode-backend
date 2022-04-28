@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Environment } from '@polycode/env';
 import { AppController } from './app.controller';
@@ -9,6 +10,9 @@ import { validate } from './env.validation';
 @Module({
   imports: [
     ConfigModule.forRoot({ validate }),
+    EventEmitterModule.forRoot({
+      wildcard: true,
+    }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
       logging:

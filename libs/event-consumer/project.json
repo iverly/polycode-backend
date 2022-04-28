@@ -1,0 +1,33 @@
+{
+  "root": "libs/event-consumer",
+  "sourceRoot": "libs/event-consumer/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/event-consumer",
+        "tsConfig": "libs/event-consumer/tsconfig.lib.json",
+        "packageJson": "libs/event-consumer/package.json",
+        "main": "libs/event-consumer/src/index.ts",
+        "assets": ["libs/event-consumer/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/event-consumer/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/event-consumer"],
+      "options": {
+        "jestConfig": "libs/event-consumer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

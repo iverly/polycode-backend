@@ -3,6 +3,8 @@
   "projects": {
     "api": "apps/api",
     "auth-provider": "libs/auth-provider",
-    "env": "libs/env"
+    "env": "libs/env",
+    "event": "libs/event",
+    "event-consumer": "libs/event-consumer"
   }
 }
