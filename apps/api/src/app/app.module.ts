@@ -11,6 +11,10 @@ import {
 import { AuthConsumerModule } from '@polycode/auth-consumer';
 import { AppController } from './app.controller';
 import { CaslModule } from '@polycode/casl';
+import {
+  UserProviderModule,
+  sequelizeModels as UserSequelizeModels,
+} from '@polycode/user-provider';
 
 @Module({
   imports: [
@@ -38,7 +42,7 @@ import { CaslModule } from '@polycode/casl';
         min: process.env.NODE_ENV === Environment.PRODUCTION ? 20 : 2,
         idle: 5000,
       },
-      models: [...AuthSequelizeModels],
+      models: [...AuthSequelizeModels, ...UserSequelizeModels],
       define: {
         underscored: true,
       },
@@ -46,6 +50,7 @@ import { CaslModule } from '@polycode/casl';
     AuthProviderModule,
     AuthConsumerModule,
     CaslModule,
+    UserProviderModule,
   ],
   controllers: [AppController],
   providers: [],

@@ -2,10 +2,23 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Environment } from '@polycode/env';
+import { ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      disableErrorMessages: process.env.NODE_ENV === Environment.PRODUCTION,
+      whitelist: true,
+      transform: true,
+      forbidNonWhitelisted: true,
+      skipMissingProperties: false,
+      skipNullProperties: false,
+      skipUndefinedProperties: false,
+    })
+  );
 
   if (process.env.NODE_ENV === Environment.PRODUCTION) {
     app.use(helmet());
