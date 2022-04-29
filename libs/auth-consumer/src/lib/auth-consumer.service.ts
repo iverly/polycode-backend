@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { AuthService } from '@polycode/auth-provider';
 import { IRole } from './interfaces/role.interface';
 
-interface IAuthorizeResponse {
+export interface IAuthorizeResponse {
   subject?: {
     id: string;
     type: string;

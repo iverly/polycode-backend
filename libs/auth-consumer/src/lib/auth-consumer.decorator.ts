@@ -1,6 +1,6 @@
 import { applyDecorators, SetMetadata, UseGuards } from '@nestjs/common';
 import { SubjectType } from './types/subject.type';
-import { AuthorizationGuard } from './auth-consumer.guard';
+import { AuthorizationGuard, SubjectTypeGuard } from './auth-consumer.guard';
 import { AUTH_CONSUMER_DECORATOR_SUBJECT_TYPES } from './auth-consumer.constants';
 
 export interface AuthorizeDecoratorOptions {
@@ -15,6 +15,6 @@ export function Authorize(options: AuthorizeDecoratorOptions = {}) {
       AUTH_CONSUMER_DECORATOR_SUBJECT_TYPES,
       options.subject?.types || []
     ),
-    UseGuards(AuthorizationGuard)
+    UseGuards(AuthorizationGuard, SubjectTypeGuard)
   );
 }
