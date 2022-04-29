@@ -7,6 +7,6 @@ import { CaslModule } from '@polycode/casl';
   imports: [AuthProviderModule, CaslModule],
   controllers: [],
   providers: [AuthConsumerService],
-  exports: [AuthConsumerService],
+  exports: [AuthConsumerService, CaslModule],
 })
 export class AuthConsumerModule {}

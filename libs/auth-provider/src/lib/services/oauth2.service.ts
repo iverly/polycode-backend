@@ -1,6 +1,5 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { TokenService } from './token.service';
-import { ClientService } from './client.service';
 import { OAuth2AuthenticateDto } from '../dtos/oauth2/authenticate.dto';
 import { OAuth2ClientGrant } from '../models/OAuth2ClientGrant.model';
 import { SubjectService } from './subject.service';

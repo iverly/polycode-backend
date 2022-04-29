@@ -1,10 +1,5 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-  UnauthorizedException,
-} from '@nestjs/common';
-import to from 'await-to-js';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { to500 } from '@polycode/to';
 import { Subject } from '../models/Subject.model';
 import { SubjectCredentials } from '../models/SubjectCredentials.model';
 import { CryptoService } from './crypto.service';
@@ -22,7 +17,7 @@ export class SubjectService {
    * @returns A subject
    */
   async getByCredentials(identity: string, secret: string): Promise<Subject> {
-    const [err, subject] = await to<Subject | null>(
+    const subject = await to500<Subject | null>(
       Subject.findOne({
         include: [
           {
@@ -36,11 +31,6 @@ export class SubjectService {
         ],
       })
     );
-
-    if (err) {
-      this.logger.error(err);
-      throw new InternalServerErrorException();
-    }
 
     if (!subject) {
       throw new UnauthorizedException('Invalid subject: subject not found');

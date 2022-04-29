@@ -1,10 +1,5 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-  UnauthorizedException,
-} from '@nestjs/common';
-import to from 'await-to-js';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { to500 } from '@polycode/to';
 import { OAuth2Client } from '../models/OAuth2Client.model';
 import { OAuth2ClientGrants } from '../models/OAuth2ClientGrant.model';
 import { OAuth2ClientUris } from '../models/OAuth2ClientRedirectUri.model';
@@ -20,7 +15,7 @@ export class ClientService {
    * @returns The client object
    */
   async getClient(clientId: string, clientSecret?: string) {
-    const [err, client] = await to<OAuth2Client | null>(
+    const client = await to500<OAuth2Client | null>(
       OAuth2Client.findOne({
         where: {
           id: clientId,
@@ -38,11 +33,6 @@ export class ClientService {
         ],
       })
     );
-
-    if (err) {
-      this.logger.error(err);
-      throw new InternalServerErrorException();
-    }
 
     if (!client) {
       throw new UnauthorizedException('Invalid client: client is invalid');

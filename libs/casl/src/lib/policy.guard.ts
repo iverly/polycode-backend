@@ -25,7 +25,8 @@ export class PolicyGuard implements CanActivate {
         context.getHandler()
       ) || [];
 
-    const request: Request = context.switchToHttp().getRequest();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const request: any = context.switchToHttp().getRequest();
 
     /* Getting the policies from the request and then creating an ability object from the policies. */
     const policies =
@@ -42,7 +43,6 @@ export class PolicyGuard implements CanActivate {
         ])
         .reduce((base, next) => base.concat(next), []) || [];
 
-    console.log(policies);
     const ability = this.caslAbilityFactory.create(policies);
 
     return policyHandlers.every((handler) =>
@@ -65,6 +65,9 @@ export class PolicyGuard implements CanActivate {
     attributes: Record<string, unknown>,
     request: Request
   ) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const authorization: any = (request as any).authorization;
+
     for (const attribute of Object.keys(attributes)) {
       if (typeof attributes[attribute] !== 'string') {
         continue;
@@ -73,8 +76,7 @@ export class PolicyGuard implements CanActivate {
       const attr: string = attributes[attribute] as string;
 
       if (attr === '@me') {
-        attributes[attribute] =
-          request.authorization?.subject?.internalIdentifier;
+        attributes[attribute] = authorization?.subject?.internalIdentifier;
       }
     }
 

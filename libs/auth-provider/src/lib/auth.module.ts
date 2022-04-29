@@ -11,12 +11,14 @@ import { ClientService } from './services/client.service';
 import { SubjectService } from './services/subject.service';
 import { CryptoService } from './services/crypto.service';
 import { AuthController } from './auth.controller';
+import { CaslModule } from '@polycode/casl';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ validate }),
     JwtModule.register({ secret: process.env.AUTH_JWT_SECRET }),
     SequelizeModule.forFeature(sequelizeModels),
+    CaslModule,
   ],
   controllers: [AuthController],
   providers: [

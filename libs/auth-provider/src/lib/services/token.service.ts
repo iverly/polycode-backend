@@ -1,7 +1,6 @@
 import {
   ForbiddenException,
   Injectable,
-  InternalServerErrorException,
   Logger,
   PreconditionFailedException,
 } from '@nestjs/common';
@@ -11,10 +10,10 @@ import { OAuth2Client } from '../models/OAuth2Client.model';
 import { OAuth2Token, TokenType } from '../models/OAuth2Token.model';
 import { OAuth2ClientGrant } from '../models/OAuth2ClientGrant.model';
 import { CryptoService } from './crypto.service';
-import to from 'await-to-js';
 import { Op } from 'sequelize';
 import { Role } from '../models/Role.model';
 import { RolePolicies } from '../models/RolePolicies.model';
+import { to500 } from '@polycode/to';
 
 @Injectable()
 export class TokenService {
@@ -31,7 +30,7 @@ export class TokenService {
    * @returns A token
    */
   async findToken(bearer: string): Promise<OAuth2Token> {
-    const [err, token] = await to<OAuth2Token | null>(
+    const token = await to500<OAuth2Token | null>(
       OAuth2Token.findOne({
         attributes: ['id', 'hashedToken', 'tokenExpireAt', 'type'],
         where: {
@@ -75,11 +74,6 @@ export class TokenService {
         ],
       })
     );
-
-    if (err) {
-      this.logger.error(err);
-      throw new InternalServerErrorException();
-    }
 
     if (!token) {
       throw new ForbiddenException();
@@ -193,19 +187,16 @@ export class TokenService {
       throw new PreconditionFailedException();
     }
 
-    try {
-      await OAuth2Token.create({
+    await to500(
+      OAuth2Token.create({
         hashedToken: this.encryptService.hash256(token),
         tokenExpireAt: expiration,
         type,
         grantWith: grant,
         ...(subject && { subjectId: subject.id }),
         ...(client && { requestedClientId: client.id }),
-      });
-    } catch (error) {
-      this.logger.error(error);
-      throw new InternalServerErrorException();
-    }
+      })
+    );
   }
 
   /**

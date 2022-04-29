@@ -8,6 +8,8 @@
     "docs": "libs/docs",
     "env": "libs/env",
     "event": "libs/event",
-    "event-consumer": "libs/event-consumer"
+    "event-consumer": "libs/event-consumer",
+    "to": "libs/to",
+    "user-provider": "libs/user-provider"
   }
 }

@@ -3,3 +3,4 @@ export * from './lib/auth-consumer.module';
 export * from './lib/auth-consumer.decorator';
 export * from './lib/interfaces';
 export * from './lib/types';
+export * from './lib/templates';
