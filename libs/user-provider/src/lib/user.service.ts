@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { to500 } from '@polycode/to';
 import { User } from './models/User';
+import { UserCreateDto } from './dtos/user.dto';
 
 @Injectable()
 export class UserProviderService {
@@ -63,10 +64,10 @@ export class UserProviderService {
    * @param {User} user - User - The user object that we want to create.
    * @returns A promise of a user
    */
-  async create(user: User): Promise<User> {
+  async create(userCreateDto: UserCreateDto): Promise<User> {
     const userCreated = await to500<User>(
       User.create({
-        ...user,
+        ...userCreateDto,
       })
     );
 

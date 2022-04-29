@@ -18,6 +18,6 @@ export class User extends Model {
   @Column({ unique: true, allowNull: false })
   email: string;
 
-  @Column({ field: 'is_email_verified' })
+  @Column({ field: 'is_email_verified', allowNull: false, defaultValue: false })
   isEmailVerified: boolean;
 }

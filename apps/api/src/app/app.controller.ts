@@ -8,21 +8,20 @@ export class AppController {
   // constructor(private sequelize: Sequelize) {
   //   this.sequelize.sync();
   // }
-
-  @Get('/:id')
-  @Authorize({
-    subject: {
-      types: [SubjectType.USER],
-    },
-    policies: [
-      {
-        action: Action.Read,
-        resource: 'user',
-        attributes: { id: '@Param::id' },
-      },
-    ],
-  })
-  do() {
-    return 'Hello World!';
-  }
+  // @Get('/:id')
+  // @Authorize({
+  //   subject: {
+  //     types: [SubjectType.USER],
+  //   },
+  //   policies: [
+  //     {
+  //       action: Action.Read,
+  //       resource: 'user',
+  //       attributes: { id: '@Param::id' },
+  //     },
+  //   ],
+  // })
+  // do() {
+  //   return 'Hello World!';
+  // }
 }
