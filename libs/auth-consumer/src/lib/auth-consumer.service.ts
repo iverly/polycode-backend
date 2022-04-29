@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AuthService } from '@polycode/auth-provider';
+import { IRolePolicy } from './interfaces';
 import { IRole } from './interfaces/role.interface';
 
 export interface IAuthorizeResponse {
@@ -26,7 +27,14 @@ export class AuthConsumerService {
         id: role.id,
         name: role.name,
         description: role.description,
-        polices: role.policies,
+        polices: role.policies.map(
+          (policy) =>
+            ({
+              action: policy.action,
+              resource: policy.resource,
+              attributes: policy.attributes,
+            } as IRolePolicy)
+        ),
       })),
     };
   }

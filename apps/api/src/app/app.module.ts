@@ -9,6 +9,8 @@ import {
   sequelizeModels as AuthSequelizeModels,
 } from '@polycode/auth-provider';
 import { AuthConsumerModule } from '@polycode/auth-consumer';
+import { AppController } from './app.controller';
+import { CaslModule } from '@polycode/casl';
 
 @Module({
   imports: [
@@ -43,8 +45,9 @@ import { AuthConsumerModule } from '@polycode/auth-consumer';
     }),
     AuthProviderModule,
     AuthConsumerModule,
+    CaslModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

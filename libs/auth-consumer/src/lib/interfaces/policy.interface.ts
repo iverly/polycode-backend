@@ -1,6 +1,5 @@
-export interface IRolePolicy {
-  id: string;
-  action: string;
-  resource: string;
-  attributes: object;
-}
+import { Action as CaslAction, Policies, Policy } from '@polycode/casl';
+
+export type Action = CaslAction;
+export type IRolePolicy = Policy;
+export type IRolePolicies = Policies;

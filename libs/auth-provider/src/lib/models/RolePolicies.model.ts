@@ -10,14 +10,7 @@ import {
 } from 'sequelize-typescript';
 import Sequelize from 'sequelize';
 import { Role } from './Role.model';
-
-export enum Action {
-  MANAGE = 'manage',
-  CREATE = 'create',
-  READ = 'read',
-  UPDATE = 'update',
-  DELETE = 'delete',
-}
+import { Action } from '@polycode/casl';
 
 @Table({
   tableName: 'polycode_auth_role_policies',

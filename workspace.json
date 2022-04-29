@@ -4,6 +4,7 @@
     "api": "apps/api",
     "auth-consumer": "libs/auth-consumer",
     "auth-provider": "libs/auth-provider",
+    "casl": "libs/casl",
     "docs": "libs/docs",
     "env": "libs/env",
     "event": "libs/event",
