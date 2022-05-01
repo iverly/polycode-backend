@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { NotificationConsumerService } from '@polycode/notification-consumer';
-import { EmailTemplate } from '@polycode/notification-provider';
+import { EmailTemplate } from '@polycode/notification-consumer';
 
 @Injectable()
 export class UserEventsService {

@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import {
-  EmailTemplate,
-  NotificationProviderService,
-} from '@polycode/notification-provider';
+import { NotificationProviderService } from '@polycode/notification-provider';
+
+export enum EmailTemplate {
+  USER_WELCOME,
+}
 
 @Injectable()
 export class NotificationConsumerService {
