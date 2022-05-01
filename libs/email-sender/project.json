@@ -1,0 +1,33 @@
+{
+  "root": "libs/email-sender",
+  "sourceRoot": "libs/email-sender/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/email-sender",
+        "tsConfig": "libs/email-sender/tsconfig.lib.json",
+        "packageJson": "libs/email-sender/package.json",
+        "main": "libs/email-sender/src/index.ts",
+        "assets": ["libs/email-sender/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/email-sender/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/email-sender"],
+      "options": {
+        "jestConfig": "libs/email-sender/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

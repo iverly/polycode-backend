@@ -16,7 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@polycode/to": ["libs/to/src/index.ts"],
+      "@polycode/email-sender": ["libs/email-sender/src/index.ts"],
       "@polycode/auth-consumer": ["libs/auth-consumer/src/index.ts"],
       "@polycode/auth-provider": ["libs/auth-provider/src/index.ts"],
       "@polycode/casl": ["libs/casl/src/index.ts"],
@@ -24,6 +24,7 @@
       "@polycode/env": ["libs/env/src/index.ts"],
       "@polycode/event": ["libs/event/src/index.ts"],
       "@polycode/event-consumer": ["libs/event-consumer/src/index.ts"],
+      "@polycode/to": ["libs/to/src/index.ts"],
       "@polycode/user-provider": ["libs/user-provider/src/index.ts"]
     }
   },
