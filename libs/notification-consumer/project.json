@@ -1,0 +1,33 @@
+{
+  "root": "libs/notification-consumer",
+  "sourceRoot": "libs/notification-consumer/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/notification-consumer",
+        "tsConfig": "libs/notification-consumer/tsconfig.lib.json",
+        "packageJson": "libs/notification-consumer/package.json",
+        "main": "libs/notification-consumer/src/index.ts",
+        "assets": ["libs/notification-consumer/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/notification-consumer/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/notification-consumer"],
+      "options": {
+        "jestConfig": "libs/notification-consumer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

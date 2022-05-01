@@ -1,0 +1,33 @@
+{
+  "root": "libs/notification-provider",
+  "sourceRoot": "libs/notification-provider/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/notification-provider",
+        "tsConfig": "libs/notification-provider/tsconfig.lib.json",
+        "packageJson": "libs/notification-provider/package.json",
+        "main": "libs/notification-provider/src/index.ts",
+        "assets": ["libs/notification-provider/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/notification-provider/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/notification-provider"],
+      "options": {
+        "jestConfig": "libs/notification-provider/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

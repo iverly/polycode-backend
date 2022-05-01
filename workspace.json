@@ -10,6 +10,9 @@
     "env": "libs/env",
     "event": "libs/event",
     "event-consumer": "libs/event-consumer",
+    "notification-catcher": "libs/notification-catcher",
+    "notification-consumer": "libs/notification-consumer",
+    "notification-provider": "libs/notification-provider",
     "to": "libs/to",
     "user-provider": "libs/user-provider"
   }
