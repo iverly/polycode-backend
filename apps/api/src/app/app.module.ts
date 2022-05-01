@@ -14,6 +14,9 @@ import {
   UserProviderModule,
   sequelizeModels as UserSequelizeModels,
 } from '@polycode/user-provider';
+import { NotificationProviderModule } from '@polycode/notification-provider';
+import { NotificationConsumerModule } from '@polycode/notification-consumer';
+import { NotificationCatcherModule } from '@polycode/notification-catcher';
 
 @Module({
   imports: [
@@ -46,6 +49,9 @@ import {
         underscored: true,
       },
     }),
+    NotificationProviderModule,
+    NotificationConsumerModule,
+    NotificationCatcherModule,
     AuthProviderModule,
     AuthConsumerModule,
     UserProviderModule,

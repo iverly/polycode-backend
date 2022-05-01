@@ -23,7 +23,6 @@ export class EmailSenderService {
    */
   async sendWelcomeEmail(to: string, data: WelcomeTemplateData): Promise<void> {
     const template = this.templateService.getWelcomeTemplate(data);
-    console.log(to, template);
     await this.sendEmail(to, template.subject, template.text);
   }
 

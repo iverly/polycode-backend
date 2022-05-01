@@ -7,10 +7,13 @@ import {
 import { to500 } from '@polycode/to';
 import { User } from './models/User';
 import { UserCreateDto } from './dtos/user.dto';
+import { EventService } from '@polycode/event';
 
 @Injectable()
 export class UserProviderService {
   private readonly logger = new Logger(UserProviderService.name);
+
+  constructor(private readonly eventService: EventService) {}
 
   /**
    * It returns a promise that resolves to a user object if the user exists in the database, or null if
@@ -70,6 +73,10 @@ export class UserProviderService {
         ...userCreateDto,
       })
     );
+
+    this.eventService.emit('user.created', {
+      ...userCreated.toJSON(),
+    });
 
     return userCreated;
   }

@@ -1,0 +1,33 @@
+{
+  "root": "libs/notification-catcher",
+  "sourceRoot": "libs/notification-catcher/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/notification-catcher",
+        "tsConfig": "libs/notification-catcher/tsconfig.lib.json",
+        "packageJson": "libs/notification-catcher/package.json",
+        "main": "libs/notification-catcher/src/index.ts",
+        "assets": ["libs/notification-catcher/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/notification-catcher/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/notification-catcher"],
+      "options": {
+        "jestConfig": "libs/notification-catcher/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

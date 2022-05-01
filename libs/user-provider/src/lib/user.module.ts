@@ -4,9 +4,14 @@ import { UserProviderService } from './user.service';
 import { AuthConsumerModule } from '@polycode/auth-consumer';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { sequelizeModels } from './models';
+import { EventModule } from '@polycode/event';
 
 @Module({
-  imports: [AuthConsumerModule, SequelizeModule.forFeature(sequelizeModels)],
+  imports: [
+    AuthConsumerModule,
+    SequelizeModule.forFeature(sequelizeModels),
+    EventModule,
+  ],
   controllers: [UserProviderController],
   providers: [UserProviderService],
   exports: [UserProviderService],

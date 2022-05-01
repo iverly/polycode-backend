@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 
 export interface WelcomeTemplateData {
   username: string;
-  confirmationLink: string;
 }
 
 export interface Template {
@@ -22,10 +21,6 @@ export class TemplateService {
       `Welcome to PolyCode, {{username}}!` +
       `\n\n` +
       `We are glad to have you on board.` +
-      `\n\n` +
-      `Please click on the following link to confirm your account:` +
-      `\n\n` +
-      `{{confirmationLink}}` +
       `\n\n` +
       `Thank you for using our website.`;
 
