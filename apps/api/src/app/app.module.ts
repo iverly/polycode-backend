@@ -10,7 +10,6 @@ import {
 } from '@polycode/auth-provider';
 import { AuthConsumerModule } from '@polycode/auth-consumer';
 import { AppController } from './app.controller';
-import { CaslModule } from '@polycode/casl';
 import {
   UserProviderModule,
   sequelizeModels as UserSequelizeModels,
@@ -49,7 +48,6 @@ import {
     }),
     AuthProviderModule,
     AuthConsumerModule,
-    CaslModule,
     UserProviderModule,
   ],
   controllers: [AppController],
