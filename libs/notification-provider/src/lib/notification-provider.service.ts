@@ -3,6 +3,7 @@ import { EmailSenderService } from '@polycode/email-sender';
 
 export enum EmailTemplate {
   USER_WELCOME,
+  USER_VERIFY_EMAIL,
 }
 
 @Injectable()
@@ -26,13 +27,10 @@ export class NotificationProviderService {
   }
 
   /**
-   * "If the template is a welcome email, send a welcome email."
-   *
-   * The problem is that the compiler doesn't know that the `data` parameter is a `Record<string,
-   * unknown>` when the template is `EmailTemplate.USER_WELCOME`
-   * @param {string} to - The email address of the recipient.
-   * @param {EmailTemplate} template - This is the template we want to use.
-   * @param data - Record<string, unknown> = {}
+   * It sends an email to a user based on the template and data provided
+   * @param {string} to - The email address of the user you want to send the email to.
+   * @param {EmailTemplate} template - This is the template that we want to send.
+   * @param {any} data - any = {}
    */
   async sendTemplatedEmail(
     to: string,
@@ -43,6 +41,9 @@ export class NotificationProviderService {
     switch (template) {
       case EmailTemplate.USER_WELCOME:
         this.emailSenderService.sendWelcomeEmail(to, data);
+        break;
+      case EmailTemplate.USER_VERIFY_EMAIL:
+        this.emailSenderService.sendUserVerifyEmail(to, data);
         break;
       default:
     }

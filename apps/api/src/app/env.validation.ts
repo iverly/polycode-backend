@@ -1,6 +1,12 @@
 import { Environment } from '@polycode/env';
 import { plainToClass } from 'class-transformer';
-import { IsEnum, IsNumber, IsString, validateSync } from 'class-validator';
+import {
+  IsEnum,
+  IsNumber,
+  IsString,
+  validateSync,
+  IsUrl,
+} from 'class-validator';
 
 /* It's a class that contains all the environment variables that the application needs to run */
 class EnvironmentVariables {
@@ -35,6 +41,22 @@ class EnvironmentVariables {
     }
   )
   AUTH_DATABASE_PORT: number;
+
+  @IsUrl(
+    { protocols: ['redis', 'rediss'] },
+    {
+      message: 'The environment variable "REDIS_URL" must be a string',
+    }
+  )
+  REDIS_URL: string;
+
+  @IsUrl(
+    { protocols: ['http', 'https'] },
+    {
+      message: 'The environment variable "PUBLIC_WWW_URL" must be a string',
+    }
+  )
+  PUBLIC_WWW_URL: string;
 }
 
 /**

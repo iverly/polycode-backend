@@ -16,3 +16,25 @@ export const UserReadSelfAuthorize: AuthorizeDecoratorOptions = {
     },
   ],
 };
+
+export const UserReadWriteSelfAuthorize: AuthorizeDecoratorOptions = {
+  subject: {
+    types: [SubjectType.USER],
+  },
+  policies: [
+    {
+      action: Action.Read,
+      resource: 'user',
+      attributes: {
+        id: '@Param::id',
+      },
+    },
+    {
+      action: Action.Update,
+      resource: 'user',
+      attributes: {
+        id: '@Param::id',
+      },
+    },
+  ],
+};

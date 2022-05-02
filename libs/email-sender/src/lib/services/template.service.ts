@@ -4,6 +4,11 @@ export interface WelcomeTemplateData {
   username: string;
 }
 
+export interface VerifyEmailTokenTemplateData {
+  username: string;
+  token: string;
+}
+
 export interface Template {
   subject: string;
   text: string;
@@ -26,6 +31,27 @@ export class TemplateService {
 
     return {
       subject: 'Welcome to PolyCode',
+      text: this.computeTemplate(template, { ...data }),
+    };
+  }
+
+  /**
+   * It takes a data object and returns a template object
+   * @param {VerifyEmailTokenTemplateData} data - VerifyEmailTokenTemplateData
+   * @returns A template object with a subject and text property.
+   */
+  getUserVerifyEmailTemplate(data: VerifyEmailTokenTemplateData): Template {
+    const template =
+      `Hello, {{username}}!` +
+      `\n\n` +
+      `Please click the link below to verify your email address.` +
+      `\n\n` +
+      `${process.env.PUBLIC_WWW_URL}/verify-email/{{token}}` +
+      `\n\n` +
+      `Thank you for using our website.`;
+
+    return {
+      subject: 'Verify your email address - PolyCode',
       text: this.computeTemplate(template, { ...data }),
     };
   }

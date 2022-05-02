@@ -14,6 +14,7 @@
     "notification-consumer": "libs/notification-consumer",
     "notification-provider": "libs/notification-provider",
     "to": "libs/to",
+    "user-consumer": "libs/user-consumer",
     "user-provider": "libs/user-provider"
   }
 }

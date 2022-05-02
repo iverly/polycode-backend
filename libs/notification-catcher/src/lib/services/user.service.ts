@@ -26,4 +26,15 @@ export class UserEventsService {
       }
     );
   }
+
+  handleNewUserVerifyEmailToken(user: Record<string, unknown>, token: string) {
+    this.notificationConsumerService.sendTemplatedEmail(
+      `${user.email}`,
+      EmailTemplate.USER_VERIFY_EMAIL,
+      {
+        username: user.username,
+        token: token,
+      }
+    );
+  }
 }

@@ -3,6 +3,7 @@ import { NotificationProviderService } from '@polycode/notification-provider';
 
 export enum EmailTemplate {
   USER_WELCOME,
+  USER_VERIFY_EMAIL,
 }
 
 @Injectable()

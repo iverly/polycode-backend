@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   Param,
   ParseUUIDPipe,
   Post,
@@ -14,7 +15,7 @@ import {
 import { Authorize, UserReadSelfAuthorize } from '@polycode/auth-consumer';
 import { ApiRoute, ApiRouteAuthenticated } from '@polycode/docs';
 import { is409 } from '@polycode/to';
-import { UserCreateDto } from './dtos/user.dto';
+import { UserCreateDto, UserEmailVerificationDto } from './dtos/user.dto';
 import { UserProviderService } from './user.service';
 import { Op } from 'sequelize';
 
@@ -158,5 +159,38 @@ export class UserProviderController {
       email: user.email,
       isEmailVerified: user.isEmailVerified,
     };
+  }
+
+  @Post('/email-verification')
+  @ApiRoute({
+    operation: {
+      summary: 'Verify a user email',
+      description: 'Verify a user email',
+    },
+    body: {
+      schema: {
+        type: 'object',
+        required: ['token'],
+        properties: {
+          token: {
+            type: 'string',
+            description: 'The user email verification token',
+          },
+        },
+      },
+    },
+    response: {
+      status: 204,
+      description: 'Returns nothing',
+    },
+    others: [
+      ApiNotFoundResponse({
+        description: 'User not found',
+      }),
+    ],
+  })
+  @HttpCode(204)
+  async userEmailVerification(@Body() body: UserEmailVerificationDto) {
+    return this.userProviderService.verifyEmailToken(body.token);
   }
 }

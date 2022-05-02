@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { SES } from 'aws-sdk';
-import { TemplateService, WelcomeTemplateData } from './template.service';
+import {
+  TemplateService,
+  VerifyEmailTokenTemplateData,
+  WelcomeTemplateData,
+} from './template.service';
 
 @Injectable()
 export class EmailSenderService {
@@ -23,6 +27,16 @@ export class EmailSenderService {
    */
   async sendWelcomeEmail(to: string, data: WelcomeTemplateData): Promise<void> {
     const template = this.templateService.getWelcomeTemplate(data);
+    await this.sendEmail(to, template.subject, template.text);
+  }
+
+  /**
+   * It sends an email to the user with a link to verify their email address
+   * @param {string} to - The email address of the user to send the email to.
+   * @param {VerifyEmailTokenTemplateData} data - {
+   */
+  async sendUserVerifyEmail(to: string, data: VerifyEmailTokenTemplateData) {
+    const template = this.templateService.getUserVerifyEmailTemplate(data);
     await this.sendEmail(to, template.subject, template.text);
   }
 

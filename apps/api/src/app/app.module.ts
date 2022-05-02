@@ -17,6 +17,7 @@ import {
 import { NotificationProviderModule } from '@polycode/notification-provider';
 import { NotificationConsumerModule } from '@polycode/notification-consumer';
 import { NotificationCatcherModule } from '@polycode/notification-catcher';
+import { RedisModule } from '@liaoliaots/nestjs-redis';
 
 @Module({
   imports: [
@@ -47,6 +48,11 @@ import { NotificationCatcherModule } from '@polycode/notification-catcher';
       models: [...AuthSequelizeModels, ...UserSequelizeModels],
       define: {
         underscored: true,
+      },
+    }),
+    RedisModule.forRoot({
+      config: {
+        url: process.env.REDIS_URL,
       },
     }),
     NotificationProviderModule,

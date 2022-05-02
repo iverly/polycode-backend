@@ -5,6 +5,7 @@ import {
   MinLength,
   IsEmail,
   Matches,
+  IsUUID,
 } from 'class-validator';
 
 export class UserCreateDto {
@@ -23,4 +24,10 @@ export class UserCreateDto {
     message: 'password is too weak',
   })
   password: string;
+}
+
+export class UserEmailVerificationDto {
+  @IsUUID(4)
+  @IsNotEmpty()
+  token: string;
 }
