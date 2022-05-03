@@ -13,8 +13,11 @@
     "notification-catcher": "libs/notification-catcher",
     "notification-consumer": "libs/notification-consumer",
     "notification-provider": "libs/notification-provider",
+    "runner": "libs/runner",
+    "runner-docker-strategy": "libs/runner-docker-strategy",
+    "runner-provider": "libs/runner-provider",
+    "runner-service": "apps/runner-service",
     "to": "libs/to",
-    "user-consumer": "libs/user-consumer",
     "user-provider": "libs/user-provider"
   }
 }
