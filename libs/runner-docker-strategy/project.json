@@ -1,0 +1,32 @@
+{
+  "root": "libs/runner-docker-strategy",
+  "sourceRoot": "libs/runner-docker-strategy/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/runner-docker-strategy",
+        "main": "libs/runner-docker-strategy/src/index.ts",
+        "tsConfig": "libs/runner-docker-strategy/tsconfig.lib.json",
+        "assets": ["libs/runner-docker-strategy/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/runner-docker-strategy/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/runner-docker-strategy"],
+      "options": {
+        "jestConfig": "libs/runner-docker-strategy/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
