@@ -99,11 +99,13 @@ export class DockerRunner extends AbstractRunner {
       stdout: stdout
         .substring(stdoutStart + 13, stdoutEnd)
         .replace(/\r\n/g, '\n')
-        .replace(/\r/g, '\n'),
+        .replace(/\r/g, '\n')
+        .slice(1, -1),
       stderr: stdout
         .substring(stdoutEnd + 13)
         .replace(/\r\n/g, '\n')
-        .replace(/\r/g, '\n'),
+        .replace(/\r/g, '\n')
+        .slice(1, -1),
     };
   }
 

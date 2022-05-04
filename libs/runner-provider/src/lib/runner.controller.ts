@@ -9,7 +9,7 @@ import { ApiRoute } from '@polycode/docs';
 export class RunnerProviderController {
   constructor(private runnerProviderService: RunnerProviderService) {}
 
-  @Post()
+  @Post('run')
   @ApiRoute({
     operation: {
       summary: 'Runs a workload',
