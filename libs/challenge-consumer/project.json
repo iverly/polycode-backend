@@ -1,0 +1,33 @@
+{
+  "root": "libs/challenge-consumer",
+  "sourceRoot": "libs/challenge-consumer/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/challenge-consumer",
+        "tsConfig": "libs/challenge-consumer/tsconfig.lib.json",
+        "packageJson": "libs/challenge-consumer/package.json",
+        "main": "libs/challenge-consumer/src/index.ts",
+        "assets": ["libs/challenge-consumer/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/challenge-consumer/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/challenge-consumer"],
+      "options": {
+        "jestConfig": "libs/challenge-consumer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
