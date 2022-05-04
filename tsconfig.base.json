@@ -16,6 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@polycode/challenge-provider": [
+        "libs/challenge-provider/src/index.ts"
+      ],
       "@polycode/auth-consumer": ["libs/auth-consumer/src/index.ts"],
       "@polycode/auth-provider": ["libs/auth-provider/src/index.ts"],
       "@polycode/casl": ["libs/casl/src/index.ts"],

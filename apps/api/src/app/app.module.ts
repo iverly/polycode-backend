@@ -18,6 +18,8 @@ import { NotificationProviderModule } from '@polycode/notification-provider';
 import { NotificationConsumerModule } from '@polycode/notification-consumer';
 import { NotificationCatcherModule } from '@polycode/notification-catcher';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ChallengeProviderModule } from '@polycode/challenge-provider';
 
 @Module({
   imports: [
@@ -55,12 +57,14 @@ import { RedisModule } from '@liaoliaots/nestjs-redis';
         url: process.env.REDIS_URL,
       },
     }),
+    MongooseModule.forRoot(process.env.MONGODB_URL),
     NotificationProviderModule,
     NotificationConsumerModule,
     NotificationCatcherModule,
     AuthProviderModule,
     AuthConsumerModule,
     UserProviderModule,
+    ChallengeProviderModule,
   ],
   controllers: [AppController],
   providers: [],

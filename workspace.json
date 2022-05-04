@@ -5,6 +5,7 @@
     "auth-consumer": "libs/auth-consumer",
     "auth-provider": "libs/auth-provider",
     "casl": "libs/casl",
+    "challenge-provider": "libs/challenge-provider",
     "docs": "libs/docs",
     "email-sender": "libs/email-sender",
     "env": "libs/env",

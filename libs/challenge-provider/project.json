@@ -1,0 +1,33 @@
+{
+  "root": "libs/challenge-provider",
+  "sourceRoot": "libs/challenge-provider/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/challenge-provider",
+        "tsConfig": "libs/challenge-provider/tsconfig.lib.json",
+        "packageJson": "libs/challenge-provider/package.json",
+        "main": "libs/challenge-provider/src/index.ts",
+        "assets": ["libs/challenge-provider/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/challenge-provider/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/challenge-provider"],
+      "options": {
+        "jestConfig": "libs/challenge-provider/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

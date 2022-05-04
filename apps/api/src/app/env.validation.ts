@@ -50,6 +50,11 @@ class EnvironmentVariables {
   )
   REDIS_URL: string;
 
+  @IsString({
+    message: 'The environment variable "MONGODB_URL" must be a string',
+  })
+  MONGODB_URL: string;
+
   @IsUrl(
     { protocols: ['http', 'https'] },
     {
