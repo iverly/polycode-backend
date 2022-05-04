@@ -30,12 +30,15 @@ export class ExerciseController {
             },
             name: {
               type: 'string',
-
               description: 'The exercise name',
             },
-            statement: {
+            description: {
               type: 'string',
-              description: 'The exercise statement',
+              description: 'The exercise description',
+            },
+            language: {
+              type: 'string',
+              description: 'The exercise language',
             },
           },
         },
@@ -47,7 +50,8 @@ export class ExerciseController {
     return exercises.map((exercise) => ({
       id: exercise.id,
       name: exercise.name,
-      statement: exercise.statement,
+      description: exercise.description,
+      language: exercise.language,
     }));
   }
 
@@ -73,9 +77,21 @@ export class ExerciseController {
             type: 'string',
             description: 'The exercise name',
           },
+          description: {
+            type: 'string',
+            description: 'The exercise description',
+          },
           statement: {
             type: 'string',
             description: 'The exercise statement',
+          },
+          language: {
+            type: 'string',
+            description: 'The exercise language',
+          },
+          defaultSource: {
+            type: 'string',
+            description: 'The exercise default source',
           },
         },
       },
@@ -86,7 +102,10 @@ export class ExerciseController {
     return {
       id: exercise.id,
       name: exercise.name,
+      description: exercise.description,
       statement: exercise.statement,
+      language: exercise.language,
+      defaultSource: exercise.defaultSource,
     };
   }
 }

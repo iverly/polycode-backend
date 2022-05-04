@@ -26,12 +26,15 @@ export class CourseController {
             id: {
               type: 'string',
               format: 'uuid',
+              description: 'The course id',
             },
             name: {
               type: 'string',
+              description: 'The course name',
             },
             description: {
               type: 'string',
+              description: 'The course description',
             },
             modules: {
               type: 'array',
@@ -42,12 +45,15 @@ export class CourseController {
                   id: {
                     type: 'string',
                     format: 'uuid',
+                    description: 'The module id',
                   },
                   name: {
                     type: 'string',
+                    description: 'The module name',
                   },
                   description: {
                     type: 'string',
+                    description: 'The module description',
                   },
                   exercises: {
                     type: 'array',
@@ -57,12 +63,19 @@ export class CourseController {
                         id: {
                           type: 'string',
                           format: 'uuid',
+                          description: 'The exercise id',
                         },
                         name: {
                           type: 'string',
+                          description: 'The exercise name',
                         },
-                        statement: {
+                        description: {
                           type: 'string',
+                          description: 'The exercise description',
+                        },
+                        language: {
+                          type: 'string',
+                          description: 'The exercise language',
                         },
                       },
                     },
@@ -79,12 +92,19 @@ export class CourseController {
                   id: {
                     type: 'string',
                     format: 'uuid',
+                    description: 'The exercise id',
                   },
                   name: {
                     type: 'string',
+                    description: 'The exercise name',
                   },
-                  statement: {
+                  description: {
                     type: 'string',
+                    description: 'The exercise description',
+                  },
+                  language: {
+                    type: 'string',
+                    description: 'The exercise language',
                   },
                 },
               },
@@ -107,13 +127,15 @@ export class CourseController {
         exercises: module.exercises.map((exercise) => ({
           id: exercise.id,
           name: exercise.name,
-          statement: exercise.statement,
+          description: exercise.description,
+          language: exercise.language,
         })),
       })),
       exercises: course.exercises.map((exercise) => ({
         id: exercise.id,
         name: exercise.name,
-        statement: exercise.statement,
+        description: exercise.description,
+        language: exercise.language,
       })),
     }));
   }
@@ -134,12 +156,15 @@ export class CourseController {
           id: {
             type: 'string',
             format: 'uuid',
+            description: 'The id of the course',
           },
           name: {
             type: 'string',
+            description: 'The name of the course',
           },
           description: {
             type: 'string',
+            description: 'The description of the course',
           },
           modules: {
             type: 'array',
@@ -150,12 +175,15 @@ export class CourseController {
                 id: {
                   type: 'string',
                   format: 'uuid',
+                  description: 'The id of the module',
                 },
                 name: {
                   type: 'string',
+                  description: 'The name of the module',
                 },
                 description: {
                   type: 'string',
+                  description: 'The description of the module',
                 },
                 exercises: {
                   type: 'array',
@@ -166,12 +194,19 @@ export class CourseController {
                       id: {
                         type: 'string',
                         format: 'uuid',
+                        description: 'The id of the exercise',
                       },
                       name: {
                         type: 'string',
+                        description: 'The name of the exercise',
                       },
-                      statement: {
+                      description: {
                         type: 'string',
+                        description: 'The description of the exercise',
+                      },
+                      language: {
+                        type: 'string',
+                        description: 'The language of the exercise',
                       },
                     },
                   },
@@ -187,12 +222,19 @@ export class CourseController {
                 id: {
                   type: 'string',
                   format: 'uuid',
+                  description: 'The id of the exercise',
                 },
                 name: {
                   type: 'string',
+                  description: 'The name of the exercise',
                 },
-                statement: {
+                description: {
                   type: 'string',
+                  description: 'The description of the exercise',
+                },
+                language: {
+                  type: 'string',
+                  description: 'The language of the exercise',
                 },
               },
             },
@@ -214,13 +256,15 @@ export class CourseController {
         exercises: module.exercises.map((exercise) => ({
           id: exercise.id,
           name: exercise.name,
-          statement: exercise.statement,
+          description: exercise.description,
+          language: exercise.language,
         })),
       })),
       exercises: course.exercises.map((exercise) => ({
         id: exercise.id,
         name: exercise.name,
-        statement: exercise.statement,
+        description: exercise.description,
+        language: exercise.language,
       })),
     };
   }

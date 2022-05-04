@@ -52,6 +52,14 @@ export class ModuleController {
                     type: 'string',
                     description: 'The exercise name',
                   },
+                  description: {
+                    type: 'string',
+                    description: 'The exercise description',
+                  },
+                  language: {
+                    type: 'string',
+                    description: 'The exercise language',
+                  },
                 },
               },
             },
@@ -69,6 +77,8 @@ export class ModuleController {
       exercises: module.exercises.map((exercise) => ({
         id: exercise.id,
         name: exercise.name,
+        description: exercise.description,
+        language: exercise.language,
       })),
     }));
   }
@@ -115,6 +125,14 @@ export class ModuleController {
                   type: 'string',
                   description: 'The exercise name',
                 },
+                description: {
+                  type: 'string',
+                  description: 'The exercise description',
+                },
+                language: {
+                  type: 'string',
+                  description: 'The exercise language',
+                },
               },
             },
           },
@@ -131,6 +149,8 @@ export class ModuleController {
       exercises: module.exercises.map((exercise) => ({
         id: exercise.id,
         name: exercise.name,
+        description: exercise.description,
+        language: exercise.language,
       })),
     };
   }

@@ -26,6 +26,10 @@ import { Course, CourseSchema } from './models/course.model';
     ModuleProviderService,
     CourseProviderService,
   ],
-  exports: [],
+  exports: [
+    ExerciseProviderService,
+    ModuleProviderService,
+    CourseProviderService,
+  ],
 })
 export class ChallengeProviderModule {}
