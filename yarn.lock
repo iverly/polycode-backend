@@ -588,6 +588,13 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
+"@nestjs/axios@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.npmjs.org/@nestjs/axios/-/axios-0.0.7.tgz#7f134636db13c2c1e8299365c7eceb73cd782b67"
+  integrity sha512-at8nj+1Nb8UleHcIN5QqZYeWX54m4m9s9gxzVE1qWy00neX2rg0+h2TfbWsnDi2tc23zIxqexanxMOJZbzO0CA==
+  dependencies:
+    axios "0.26.0"
+
 "@nestjs/common@^8.0.0":
   version "8.4.4"
   resolved "https://registry.npmjs.org/@nestjs/common/-/common-8.4.4.tgz#0914c6c0540b5a344c7c8fd6072faa1a49af1158"
@@ -1811,6 +1818,13 @@ aws-sdk@*, aws-sdk@^2.1124.0:
     url "0.10.3"
     uuid "3.3.2"
     xml2js "0.4.19"
+
+axios@0.26.0:
+  version "0.26.0"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.26.0.tgz#9a318f1c69ec108f8cd5f3c3d390366635e13928"
+  integrity sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==
+  dependencies:
+    follow-redirects "^1.14.8"
 
 axios@0.26.1:
   version "0.26.1"

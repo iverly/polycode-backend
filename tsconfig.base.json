@@ -16,12 +16,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@polycode/challenge-provider": [
-        "libs/challenge-provider/src/index.ts"
+      "@polycode/runner-consumer": [
+        "libs/runner-consumer/src/index.ts"
       ],
       "@polycode/auth-consumer": ["libs/auth-consumer/src/index.ts"],
       "@polycode/auth-provider": ["libs/auth-provider/src/index.ts"],
       "@polycode/casl": ["libs/casl/src/index.ts"],
+      "@polycode/challenge-consumer": ["libs/challenge-consumer/src/index.ts"],
+      "@polycode/challenge-provider": ["libs/challenge-provider/src/index.ts"],
       "@polycode/docs": ["libs/docs/src/index.ts"],
       "@polycode/email-sender": ["libs/email-sender/src/index.ts"],
       "@polycode/env": ["libs/env/src/index.ts"],
@@ -41,6 +43,9 @@
         "libs/runner-docker-strategy/src/index.ts"
       ],
       "@polycode/runner-provider": ["libs/runner-provider/src/index.ts"],
+      "@polycode/submission-provider": [
+        "libs/submission-provider/src/index.ts"
+      ],
       "@polycode/to": ["libs/to/src/index.ts"],
       "@polycode/user-consumer": ["libs/user-consumer/src/index.ts"],
       "@polycode/user-provider": ["libs/user-provider/src/index.ts"]

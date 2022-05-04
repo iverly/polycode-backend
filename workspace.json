@@ -5,6 +5,7 @@
     "auth-consumer": "libs/auth-consumer",
     "auth-provider": "libs/auth-provider",
     "casl": "libs/casl",
+    "challenge-consumer": "libs/challenge-consumer",
     "challenge-provider": "libs/challenge-provider",
     "docs": "libs/docs",
     "email-sender": "libs/email-sender",
@@ -15,9 +16,11 @@
     "notification-consumer": "libs/notification-consumer",
     "notification-provider": "libs/notification-provider",
     "runner": "libs/runner",
+    "runner-consumer": "libs/runner-consumer",
     "runner-docker-strategy": "libs/runner-docker-strategy",
     "runner-provider": "libs/runner-provider",
     "runner-service": "apps/runner-service",
+    "submission-provider": "libs/submission-provider",
     "to": "libs/to",
     "user-provider": "libs/user-provider"
   }

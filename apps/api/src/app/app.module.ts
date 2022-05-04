@@ -20,6 +20,8 @@ import { NotificationCatcherModule } from '@polycode/notification-catcher';
 import { RedisModule } from '@liaoliaots/nestjs-redis';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ChallengeProviderModule } from '@polycode/challenge-provider';
+import { SubmissionProviderModule } from '@polycode/submission-provider';
+import { RunnerConsumerModule } from '@polycode/runner-consumer';
 
 @Module({
   imports: [
@@ -65,6 +67,8 @@ import { ChallengeProviderModule } from '@polycode/challenge-provider';
     AuthConsumerModule,
     UserProviderModule,
     ChallengeProviderModule,
+    SubmissionProviderModule,
+    RunnerConsumerModule,
   ],
   controllers: [AppController],
   providers: [],
