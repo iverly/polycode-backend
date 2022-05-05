@@ -9,7 +9,7 @@ export type CourseDocument = Course & Document;
 @Schema({
   autoIndex: true,
   autoCreate: true,
-  collection: 'challenge_course',
+  collection: 'polycode_challenge_course',
 })
 export class Course {
   @Prop({ required: true })

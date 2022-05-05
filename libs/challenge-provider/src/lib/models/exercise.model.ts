@@ -7,7 +7,7 @@ export type ExerciseDocument = Exercise & Document;
 @Schema({
   autoIndex: true,
   autoCreate: true,
-  collection: 'challenge_exercise',
+  collection: 'polycode_challenge_exercise',
 })
 export class Exercise {
   @Prop({ required: true })

@@ -16,7 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@polycode/validation": ["libs/validation/src/index.ts"],
+      "@polycode/decorator": ["libs/decorator/src/index.ts"],
       "@polycode/auth-consumer": ["libs/auth-consumer/src/index.ts"],
       "@polycode/auth-provider": ["libs/auth-provider/src/index.ts"],
       "@polycode/casl": ["libs/casl/src/index.ts"],
@@ -47,7 +47,8 @@
       ],
       "@polycode/to": ["libs/to/src/index.ts"],
       "@polycode/user-consumer": ["libs/user-consumer/src/index.ts"],
-      "@polycode/user-provider": ["libs/user-provider/src/index.ts"]
+      "@polycode/user-provider": ["libs/user-provider/src/index.ts"],
+      "@polycode/validation": ["libs/validation/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

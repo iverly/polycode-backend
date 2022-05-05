@@ -7,6 +7,7 @@
     "casl": "libs/casl",
     "challenge-consumer": "libs/challenge-consumer",
     "challenge-provider": "libs/challenge-provider",
+    "decorator": "libs/decorator",
     "docs": "libs/docs",
     "email-sender": "libs/email-sender",
     "env": "libs/env",

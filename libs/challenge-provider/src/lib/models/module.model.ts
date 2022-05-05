@@ -8,7 +8,7 @@ export type ModuleDocument = Module & Document;
 @Schema({
   autoIndex: true,
   autoCreate: true,
-  collection: 'challenge_module',
+  collection: 'polycode_challenge_module',
 })
 export class Module {
   @Prop({ required: true })

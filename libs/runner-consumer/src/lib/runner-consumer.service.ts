@@ -1,6 +1,6 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { Workload } from '@polycode/runner';
+import { Workload, WorkloadResult } from '@polycode/runner';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable()
@@ -9,7 +9,10 @@ export class RunnerConsumerService {
 
   async run(workload: Workload) {
     return firstValueFrom(
-      this.httpService.post(`${process.env.RUNNER_API_URL}/run`, workload)
+      this.httpService.post<WorkloadResult>(
+        `${process.env.RUNNER_API_URL}/run`,
+        workload
+      )
     );
   }
 }
