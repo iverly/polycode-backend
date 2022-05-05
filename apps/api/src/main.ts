@@ -22,13 +22,14 @@ async function bootstrap() {
 
   if (process.env.NODE_ENV === Environment.PRODUCTION) {
     app.use(helmet());
-    app.enableCors({
-      origin: true,
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      preflightContinue: false,
-      optionsSuccessStatus: 204,
-    });
   }
+
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  });
 
   if (process.env.NODE_ENV === Environment.DEVELOPMENT) {
     const config = new DocumentBuilder()
