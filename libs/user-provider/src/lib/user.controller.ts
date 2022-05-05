@@ -18,6 +18,7 @@ import { is409 } from '@polycode/to';
 import { UserCreateDto, UserEmailVerificationDto } from './dtos/user.dto';
 import { UserProviderService } from './user.service';
 import { Op } from 'sequelize';
+import { ParseUUIDOrMePipe, ReqDec } from '@polycode/validation';
 
 @Controller('user')
 @ApiTags('User')
@@ -151,7 +152,8 @@ export class UserProviderController {
       }),
     ],
   })
-  async getById(@Param('id', ParseUUIDPipe) id: string) {
+  async getById(@ReqDec(ParseUUIDOrMePipe) id: string) {
+    console.log(id);
     const user = await this.userProviderService.findById(id);
     return {
       id: user.id,

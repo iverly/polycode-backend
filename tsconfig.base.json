@@ -16,9 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@polycode/runner-consumer": [
-        "libs/runner-consumer/src/index.ts"
-      ],
+      "@polycode/validation": ["libs/validation/src/index.ts"],
       "@polycode/auth-consumer": ["libs/auth-consumer/src/index.ts"],
       "@polycode/auth-provider": ["libs/auth-provider/src/index.ts"],
       "@polycode/casl": ["libs/casl/src/index.ts"],
@@ -39,6 +37,7 @@
         "libs/notification-provider/src/index.ts"
       ],
       "@polycode/runner": ["libs/runner/src/index.ts"],
+      "@polycode/runner-consumer": ["libs/runner-consumer/src/index.ts"],
       "@polycode/runner-docker-strategy": [
         "libs/runner-docker-strategy/src/index.ts"
       ],

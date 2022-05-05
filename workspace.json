@@ -22,6 +22,7 @@
     "runner-service": "apps/runner-service",
     "submission-provider": "libs/submission-provider",
     "to": "libs/to",
-    "user-provider": "libs/user-provider"
+    "user-provider": "libs/user-provider",
+    "validation": "libs/validation"
   }
 }

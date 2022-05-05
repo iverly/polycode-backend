@@ -143,7 +143,7 @@ export class PolicyGuard implements CanActivate {
 
       const attr: string = attributes[attribute] as string;
 
-      if (attr === '@me') {
+      if (attr === '@Replace::@me') {
         attributes[attribute] = authorization?.subject?.internalIdentifier;
       }
     }
