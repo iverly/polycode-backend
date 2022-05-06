@@ -1,6 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Language } from '@polycode/runner';
+import { Module } from './module.model';
+import * as mongoose from 'mongoose';
+import { Course } from './course.model';
 
 export type ExerciseDocument = Exercise & Document;
 
@@ -27,6 +30,12 @@ export class Exercise {
 
   @Prop({ required: true })
   defaultSource: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Module' })
+  module?: Module;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Course' })
+  course?: Course;
 }
 
 export const ExerciseSchema = SchemaFactory.createForClass(Exercise);

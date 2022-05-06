@@ -25,6 +25,7 @@ export class ModuleProviderService {
 
     if (populate) {
       query.populate('exercises');
+      query.populate('course');
     }
 
     const module = await to500<ModuleDocument>(query.exec());
@@ -44,6 +45,7 @@ export class ModuleProviderService {
 
     if (populate) {
       query.populate('exercises');
+      query.populate('course');
     }
 
     const modules = await to500<ModuleDocument[]>(query.exec());

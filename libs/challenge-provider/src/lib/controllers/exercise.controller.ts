@@ -46,7 +46,7 @@ export class ExerciseController {
     },
   })
   async getAll() {
-    const exercises = await this.exerciseService.getAll();
+    const exercises = await this.exerciseService.getAll(false);
     return exercises.map((exercise) => ({
       id: exercise.id,
       name: exercise.name,
@@ -98,7 +98,7 @@ export class ExerciseController {
     },
   })
   async getId(@Param('id', ParseUUIDPipe) id: string) {
-    const exercise = await this.exerciseService.getById(id);
+    const exercise = await this.exerciseService.getById(id, false);
     return {
       id: exercise.id,
       name: exercise.name,
