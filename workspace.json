@@ -21,6 +21,7 @@
     "runner-docker-strategy": "libs/runner-docker-strategy",
     "runner-provider": "libs/runner-provider",
     "runner-service": "apps/runner-service",
+    "submission-consumer": "libs/submission-consumer",
     "submission-provider": "libs/submission-provider",
     "to": "libs/to",
     "user-provider": "libs/user-provider",

@@ -21,6 +21,32 @@ export class SubmissionProviderService {
     private submissionModel: Model<SubmissionDocument>
   ) {}
 
+  /**
+   * Get all submissions for a user.
+   * @param {string} userId - string
+   * @returns An array of SubmissionDocument objects.
+   */
+  async getUserSubmissions(userId: string): Promise<SubmissionDocument[]> {
+    const query = this.submissionModel.find({ userId });
+    return await to500<SubmissionDocument[]>(query.exec());
+  }
+
+  /**
+   * It takes a submission, runs it, and saves the result
+   * @param {ExerciseSubmissionDto} exerciseSubmissionDto - This is the data that the user is
+   * submitting.
+   * @param {string} userId - The id of the user who submitted the exercise.
+   * @returns {
+   *     id: submission.id,
+   *     execution: {
+   *       success: runResponse.data?.success,
+   *       output: {
+   *         stdout: runResponse.data?.output?.stdout,
+   *         stderr: runResponse.data?.output?.stderr,
+   *       },
+   *     },
+   *   }
+   */
   async submitExercise(
     exerciseSubmissionDto: ExerciseSubmissionDto,
     userId: string

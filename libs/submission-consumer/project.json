@@ -1,0 +1,33 @@
+{
+  "root": "libs/submission-consumer",
+  "sourceRoot": "libs/submission-consumer/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/submission-consumer",
+        "tsConfig": "libs/submission-consumer/tsconfig.lib.json",
+        "packageJson": "libs/submission-consumer/package.json",
+        "main": "libs/submission-consumer/src/index.ts",
+        "assets": ["libs/submission-consumer/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/submission-consumer/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/submission-consumer"],
+      "options": {
+        "jestConfig": "libs/submission-consumer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
