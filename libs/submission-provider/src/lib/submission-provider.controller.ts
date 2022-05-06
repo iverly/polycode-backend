@@ -4,6 +4,7 @@ import { Authorize, UserSubmissionAuthorize } from '@polycode/auth-consumer';
 import { ExerciseSubmissionDto } from './dtos/exercise.dto';
 import { SubmissionProviderService } from './submission-provider.service';
 import { ApiRouteAuthenticated } from '@polycode/docs';
+import { Subject } from '@polycode/decorator';
 
 @Controller('submission')
 @ApiTags('Submission')
@@ -55,7 +56,13 @@ export class SubmissionProviderController {
       },
     },
   })
-  submitExercise(@Body() exerciseSubmissionDto: ExerciseSubmissionDto) {
-    return this.submissionProviderService.submitExercise(exerciseSubmissionDto);
+  submitExercise(
+    @Body() exerciseSubmissionDto: ExerciseSubmissionDto,
+    @Subject('internalIdentifier') userId: string
+  ) {
+    return this.submissionProviderService.submitExercise(
+      exerciseSubmissionDto,
+      userId
+    );
   }
 }

@@ -23,7 +23,7 @@ export class SubmissionProviderService {
 
   async submitExercise(
     exerciseSubmissionDto: ExerciseSubmissionDto,
-    userId = 'anonymous'
+    userId: string
   ) {
     const exercise = await this.challengeConsumerService.getExerciseById(
       exerciseSubmissionDto.exerciseId

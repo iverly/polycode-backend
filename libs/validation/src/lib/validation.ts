@@ -1,24 +1,17 @@
-import {
-  Injectable,
-  PipeTransform,
-  BadRequestException,
-  createParamDecorator,
-  ExecutionContext,
-} from '@nestjs/common';
+import { Injectable, PipeTransform, BadRequestException } from '@nestjs/common';
 import { Request } from 'express';
 import { validate } from 'uuid';
 
-export const ReqDec = createParamDecorator(
-  (data: unknown, ctx: ExecutionContext) => {
-    const request = ctx.switchToHttp().getRequest();
-    return request;
-  }
-);
-
 @Injectable()
 export class ParseUUIDOrMePipe implements PipeTransform {
+  private paramName: string;
+
+  constructor(paramName = 'id') {
+    this.paramName = paramName;
+  }
+
   transform(request: Request) {
-    const { id } = request.params;
+    const id = request.params[this.paramName];
 
     if (!id || (id !== '@me' && !validate(id))) {
       throw new BadRequestException();

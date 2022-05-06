@@ -3,9 +3,9 @@ import {
   Controller,
   Get,
   HttpCode,
-  Param,
-  ParseUUIDPipe,
   Post,
+  Param,
+  Req,
 } from '@nestjs/common';
 import {
   ApiConflictResponse,
@@ -18,7 +18,8 @@ import { is409 } from '@polycode/to';
 import { UserCreateDto, UserEmailVerificationDto } from './dtos/user.dto';
 import { UserProviderService } from './user.service';
 import { Op } from 'sequelize';
-import { ParseUUIDOrMePipe, ReqDec } from '@polycode/validation';
+import { ParseUUIDOrMePipe } from '@polycode/validation';
+import { Incoming } from '@polycode/decorator';
 
 @Controller('user')
 @ApiTags('User')
@@ -152,7 +153,7 @@ export class UserProviderController {
       }),
     ],
   })
-  async getById(@ReqDec(ParseUUIDOrMePipe) id: string) {
+  async getById(@Incoming(new ParseUUIDOrMePipe('id')) id: string) {
     console.log(id);
     const user = await this.userProviderService.findById(id);
     return {
