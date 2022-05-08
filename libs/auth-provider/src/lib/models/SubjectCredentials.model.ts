@@ -9,8 +9,9 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Subject } from './Subject.model';
+import Sequelize from 'sequelize';
 
-enum CredentialsType {
+export enum CredentialsType {
   EMAIL_WITH_PASSWORD = 'email_with_password',
 }
 
@@ -22,7 +23,7 @@ enum CredentialsType {
 export class SubjectCredentials extends Model {
   @IsUUID(4)
   @PrimaryKey
-  @Column
+  @Column({ defaultValue: Sequelize.UUIDV4 })
   id: string;
 
   @Column({

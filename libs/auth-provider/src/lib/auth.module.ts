@@ -29,6 +29,6 @@ import { CaslModule } from '@polycode/casl';
     SubjectService,
     CryptoService,
   ],
-  exports: [AuthService],
+  exports: [AuthService, SubjectService],
 })
 export class AuthProviderModule {}

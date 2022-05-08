@@ -13,6 +13,7 @@ import { OAuth2Token } from './OAuth2Token.model';
 import { SubjectCredentials } from './SubjectCredentials.model';
 import { Role } from './Role.model';
 import { SubjectRoles } from './SubjectRoles.model';
+import Sequelize from 'sequelize';
 
 export enum SubjectType {
   USER = 'user',
@@ -26,7 +27,7 @@ export enum SubjectType {
 export class Subject extends Model {
   @IsUUID(4)
   @PrimaryKey
-  @Column
+  @Column({ defaultValue: Sequelize.UUIDV4 })
   id: string;
 
   @IsUUID(4)

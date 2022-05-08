@@ -13,7 +13,8 @@ import { v4 as uuidv4 } from 'uuid';
 import Redis from 'ioredis';
 import { SubmissionConsumerService } from '@polycode/submission-consumer';
 import { ChallengeConsumerService } from '@polycode/challenge-consumer';
-import { result } from 'lodash';
+import { OnEvent } from '@nestjs/event-emitter';
+import { AuthConsumerService } from '@polycode/auth-consumer';
 
 @Injectable()
 export class UserProviderService {
@@ -24,7 +25,8 @@ export class UserProviderService {
     @InjectRedis()
     private readonly redis: Redis,
     private readonly submissionConsumerService: SubmissionConsumerService,
-    private readonly challengeConsumerService: ChallengeConsumerService
+    private readonly challengeConsumerService: ChallengeConsumerService,
+    private readonly authConsumerService: AuthConsumerService
   ) {}
 
   /**
@@ -86,13 +88,14 @@ export class UserProviderService {
       })
     );
 
+    await this.authConsumerService.createSubjectAsUser(
+      userCreated.id,
+      userCreateDto.email,
+      userCreateDto.password
+    );
+
     this.eventService.emit('user.created', {
       ...userCreated.toJSON(),
-    });
-
-    this.eventService.emit('user.verify_email.token.created', {
-      user: userCreated.toJSON(),
-      token: await this.createVerifyEmailToken(userCreated),
     });
 
     return userCreated;
@@ -296,5 +299,17 @@ export class UserProviderService {
     );
 
     return response;
+  }
+
+  /**
+   * When a user is created, create a verify email token and emit an event with the user and token
+   * @param {User} user - User - The user that was created
+   */
+  @OnEvent('user.created')
+  async onUserCreated(user: User): Promise<void> {
+    this.eventService.emit('user.verify_email.token.created', {
+      user,
+      token: await this.createVerifyEmailToken(user),
+    });
   }
 }
