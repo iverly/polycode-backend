@@ -11,6 +11,7 @@ export interface ISubmission {
   userId: string;
   type: SubmissionType;
   targetId: string;
+  at: Date;
   execution?: WorkloadResult;
 }
 

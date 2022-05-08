@@ -1,4 +1,5 @@
 import { Language } from '@polycode/runner';
+import { Module } from './module.type';
 
 export interface Exercise {
   id: string;
@@ -7,4 +8,5 @@ export interface Exercise {
   statement: string;
   language: Language;
   defaultSource: string;
+  module?: Module;
 }

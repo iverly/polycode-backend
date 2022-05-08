@@ -27,7 +27,7 @@ export class SubmissionProviderService {
    * @returns An array of SubmissionDocument objects.
    */
   async getUserSubmissions(userId: string): Promise<SubmissionDocument[]> {
-    const query = this.submissionModel.find({ userId });
+    const query = this.submissionModel.find({ userId }).sort({ at: -1 });
     return await to500<SubmissionDocument[]>(query.exec());
   }
 
@@ -69,6 +69,7 @@ export class SubmissionProviderService {
       type: SubmissionType.EXERCISE,
       targetId: exercise.id,
       userId,
+      at: new Date(),
       execution: {
         success: runResponse.data?.success,
         output: {

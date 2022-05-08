@@ -13,8 +13,8 @@ export class ChallengeConsumerService {
    * @param {string} id - The id of the exercise to get.
    * @returns A promise of an exercise.
    */
-  async getExerciseById(id: string): Promise<Exercise> {
-    const exercise = await this.exerciseProviderService.getById(id);
+  async getExerciseById(id: string, populate = true): Promise<Exercise> {
+    const exercise = await this.exerciseProviderService.getById(id, populate);
     return {
       id: exercise.id,
       name: exercise.name,
@@ -22,6 +22,7 @@ export class ChallengeConsumerService {
       statement: exercise.statement,
       language: exercise.language,
       defaultSource: exercise.defaultSource,
+      module: exercise.module,
     };
   }
 }

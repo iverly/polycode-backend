@@ -36,6 +36,9 @@ export class Submission {
     })
   )
   execution: WorkloadResult;
+
+  @Prop({ required: true })
+  at: Date;
 }
 
 export const SubmissionSchema = SchemaFactory.createForClass(Submission);

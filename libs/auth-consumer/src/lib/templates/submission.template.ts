@@ -13,3 +13,18 @@ export const UserSubmissionAuthorize: AuthorizeDecoratorOptions = {
     },
   ],
 };
+
+export const UserSubmissionReadAuthorize: AuthorizeDecoratorOptions = {
+  subject: {
+    types: [SubjectType.USER],
+  },
+  policies: [
+    {
+      action: Action.Read,
+      resource: 'submission',
+      attributes: {
+        userId: '@Param::userId',
+      },
+    },
+  ],
+};

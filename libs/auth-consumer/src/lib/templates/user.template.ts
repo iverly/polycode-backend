@@ -11,7 +11,7 @@ export const UserReadSelfAuthorize: AuthorizeDecoratorOptions = {
       action: Action.Read,
       resource: 'user',
       attributes: {
-        id: '@Param::id',
+        id: '@Param::userId',
       },
     },
   ],
@@ -33,7 +33,7 @@ export const UserReadWriteSelfAuthorize: AuthorizeDecoratorOptions = {
       action: Action.Update,
       resource: 'user',
       attributes: {
-        id: '@Param::id',
+        id: '@Param::userId',
       },
     },
   ],
