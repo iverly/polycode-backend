@@ -7,6 +7,8 @@ import { sequelizeModels } from './models';
 import { EventModule } from '@polycode/event';
 import { EventConsumerModule } from '@polycode/event-consumer';
 import { NotificationConsumerModule } from '@polycode/notification-consumer';
+import { SubmissionConsumerModule } from '@polycode/submission-consumer';
+import { ChallengeConsumerModule } from '@polycode/challenge-consumer';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { NotificationConsumerModule } from '@polycode/notification-consumer';
     EventModule,
     EventConsumerModule.register({ prefix: 'user' }),
     NotificationConsumerModule,
+    SubmissionConsumerModule,
+    ChallengeConsumerModule,
   ],
   controllers: [UserProviderController],
   providers: [UserProviderService],

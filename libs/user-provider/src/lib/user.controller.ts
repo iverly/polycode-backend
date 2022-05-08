@@ -12,7 +12,11 @@ import {
   ApiNotFoundResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Authorize, UserReadSelfAuthorize } from '@polycode/auth-consumer';
+import {
+  Authorize,
+  UserReadSelfAuthorize,
+  UserSubmissionReadAuthorize,
+} from '@polycode/auth-consumer';
 import { ApiRoute, ApiRouteAuthenticated } from '@polycode/docs';
 import { is409 } from '@polycode/to';
 import { UserCreateDto, UserEmailVerificationDto } from './dtos/user.dto';
@@ -113,7 +117,40 @@ export class UserProviderController {
     };
   }
 
-  @Get('/:id')
+  @Post('/email-verification')
+  @ApiRoute({
+    operation: {
+      summary: 'Verify a user email',
+      description: 'Verify a user email',
+    },
+    body: {
+      schema: {
+        type: 'object',
+        required: ['token'],
+        properties: {
+          token: {
+            type: 'string',
+            description: 'The user email verification token',
+          },
+        },
+      },
+    },
+    response: {
+      status: 204,
+      description: 'Returns nothing',
+    },
+    others: [
+      ApiNotFoundResponse({
+        description: 'User not found',
+      }),
+    ],
+  })
+  @HttpCode(204)
+  async userEmailVerification(@Body() body: UserEmailVerificationDto) {
+    return this.userProviderService.verifyEmailToken(body.token);
+  }
+
+  @Get('/:userId')
   @Authorize(UserReadSelfAuthorize)
   @ApiRouteAuthenticated({
     operation: {
@@ -153,7 +190,7 @@ export class UserProviderController {
       }),
     ],
   })
-  async getById(@Incoming(new ParseUUIDOrMePipe('id')) id: string) {
+  async getById(@Incoming(new ParseUUIDOrMePipe('userId')) id: string) {
     console.log(id);
     const user = await this.userProviderService.findById(id);
     return {
@@ -164,36 +201,9 @@ export class UserProviderController {
     };
   }
 
-  @Post('/email-verification')
-  @ApiRoute({
-    operation: {
-      summary: 'Verify a user email',
-      description: 'Verify a user email',
-    },
-    body: {
-      schema: {
-        type: 'object',
-        required: ['token'],
-        properties: {
-          token: {
-            type: 'string',
-            description: 'The user email verification token',
-          },
-        },
-      },
-    },
-    response: {
-      status: 204,
-      description: 'Returns nothing',
-    },
-    others: [
-      ApiNotFoundResponse({
-        description: 'User not found',
-      }),
-    ],
-  })
-  @HttpCode(204)
-  async userEmailVerification(@Body() body: UserEmailVerificationDto) {
-    return this.userProviderService.verifyEmailToken(body.token);
+  @Get('/:userId/submissions')
+  @Authorize(UserSubmissionReadAuthorize)
+  getSubmissions(@Incoming(new ParseUUIDOrMePipe('userId')) id: string) {
+    return this.userProviderService.getUserSubmissions(id);
   }
 }

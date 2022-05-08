@@ -11,6 +11,9 @@ import { EventService } from '@polycode/event';
 import { InjectRedis } from '@liaoliaots/nestjs-redis';
 import { v4 as uuidv4 } from 'uuid';
 import Redis from 'ioredis';
+import { SubmissionConsumerService } from '@polycode/submission-consumer';
+import { ChallengeConsumerService } from '@polycode/challenge-consumer';
+import { result } from 'lodash';
 
 @Injectable()
 export class UserProviderService {
@@ -18,7 +21,10 @@ export class UserProviderService {
 
   constructor(
     private readonly eventService: EventService,
-    @InjectRedis() private readonly redis: Redis
+    @InjectRedis()
+    private readonly redis: Redis,
+    private readonly submissionConsumerService: SubmissionConsumerService,
+    private readonly challengeConsumerService: ChallengeConsumerService
   ) {}
 
   /**
@@ -147,5 +153,148 @@ export class UserProviderService {
 
     await to500(this.redis.hdel('user_verify_email_token', token));
     return;
+  }
+
+  /**
+   * It's getting all the submissions of a user, then it's getting all the exercises that the user has
+   * submitted to, then it's grouping the exercises by module and course and then it's returning the
+   * grouped exercises
+   * @param {string} id - The id of the user.
+   * @returns An array of objects.
+   */
+  async getUserSubmissions(id: string): Promise<Record<string, string>[]> {
+    const submissions = await this.submissionConsumerService.getUserSubmissions(
+      id
+    );
+
+    const uniqueExerciseIds = new Set(
+      submissions.map((submission) => submission.targetId)
+    );
+
+    const exercises = await Promise.all(
+      [...uniqueExerciseIds].map((id) =>
+        this.challengeConsumerService.getExerciseById(id)
+      )
+    );
+
+    const response = [];
+
+    /* Pushing the exercises that don't have a module into the response array. */
+    response.push(
+      ...exercises
+        .filter((exercise) => !exercise.module)
+        .map((exercise) => {
+          return {
+            id: exercise.id,
+            name: exercise.name,
+            description: exercise.description,
+            submissions: submissions
+              .filter((submission) => submission.targetId === exercise.id)
+              .map((submission) => ({
+                id: submission.id,
+                at: submission.at,
+                execution: submission.execution,
+              })),
+            type: 'exercise',
+          };
+        })
+    );
+
+    /* It's filtering out the exercises that don't have a course but a module and then it's getting the unique module ids. */
+    const exercisesWithModuleAndNoCourse = exercises.filter(
+      (exercise) => exercise.module && !exercise.module.course
+    );
+    const uniqueModuleIds = new Set(
+      exercisesWithModuleAndNoCourse.map((exercise) => exercise.module.id)
+    );
+
+    /* It's pushing the modules that don't have a course into the response array. */
+    response.push(
+      ...[...uniqueModuleIds].map((moduleId) => {
+        const module = exercisesWithModuleAndNoCourse.find(
+          (exercise) => exercise.module.id === moduleId
+        )?.module;
+
+        const exercises = exercisesWithModuleAndNoCourse.filter(
+          (exercise) => exercise.module.id === moduleId
+        );
+
+        return {
+          id: module.id,
+          name: module.name,
+          description: module.description,
+          exercises: exercises.map((exercise) => ({
+            id: exercise.id,
+            name: exercise.name,
+            description: exercise.description,
+            submissions: submissions
+              .filter((submission) => submission.targetId === exercise.id)
+              .map((submission) => ({
+                id: submission.id,
+                at: submission.at,
+                execution: submission.execution,
+              })),
+            type: 'exercise',
+          })),
+          type: 'module',
+        };
+      })
+    );
+
+    /* It's filtering out the exercises that have a module and a course and then it's getting the
+    unique course ids. */
+    const exercisesWithModuleAndCourse = exercises.filter(
+      (exercise) => exercise.module && exercise.module.course
+    );
+    const uniqueCourseIds = new Set(
+      exercisesWithModuleAndCourse.map((exercise) => exercise.module.course.id)
+    );
+
+    /* It's pushing the courses into the response array. */
+    response.push(
+      ...[...uniqueCourseIds].map((courseId) => {
+        const course = exercisesWithModuleAndCourse.find(
+          (exercise) => exercise.module.course.id === courseId
+        )?.module.course;
+
+        const modules = exercisesWithModuleAndCourse
+          .filter((exercise) => exercise.module.course.id === courseId)
+          .map((exercise) => exercise.module);
+
+        return {
+          id: course.id,
+          name: course.name,
+          description: course.description,
+          modules: modules.map((module) => {
+            const exercises = exercisesWithModuleAndCourse.filter(
+              (exercise) => exercise.module.id === module.id
+            );
+
+            return {
+              id: module.id,
+              name: module.name,
+              description: module.description,
+              exercises: exercises.map((exercise) => ({
+                id: exercise.id,
+                name: exercise.name,
+                description: exercise.description,
+                submissions: submissions
+                  .filter((submission) => submission.targetId === exercise.id)
+                  .map((submission) => ({
+                    id: submission.id,
+                    at: submission.at,
+                    execution: submission.execution,
+                  })),
+                type: 'exercise',
+              })),
+              type: 'module',
+            };
+          }),
+          type: 'course',
+        };
+      })
+    );
+
+    return response;
   }
 }
