@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-api-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: git fetch --prune --unshallow
+      - uses: gittools/actions/gitversion/setup@v0.9.11
+        with:
+          versionSpec: '5.x'
+      - id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.11
+      - id: version
+        run: echo "::set-output name=version::${{ steps.gitversion.outputs.majorMinorPatch }}"
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          dockerfile: Dockerfile.api
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          image: api
+          tags: ${{ steps.version.outputs.version }}
+  build-runner-service-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: git fetch --prune --unshallow
+      - uses: gittools/actions/gitversion/setup@v0.9.11
+        with:
+          versionSpec: '5.x'
+      - id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.11
+      - id: version
+        run: echo "::set-output name=version::${{ steps.gitversion.outputs.majorMinorPatch }}"
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          dockerfile: Dockerfile.runner-service
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          image: runner-service
+          tags: ${{ steps.version.outputs.version }}

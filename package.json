@@ -6,7 +6,8 @@
     "start": "nx serve --no-watch",
     "dev": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "nx": "nx"
   },
   "private": true,
   "dependencies": {
