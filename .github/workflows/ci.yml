@@ -60,7 +60,7 @@ jobs:
         run: echo "::set-output name=version::${{ steps.gitversion.outputs.majorMinorPatch }}-${{ steps.gitversion.outputs.preReleaseTag }}-${{ steps.gitversion.outputs.shortSha }}"
       - uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          dockerfile: images/java-runner/Dockerfile
+          directory: images/java-runner
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -80,7 +80,7 @@ jobs:
         run: echo "::set-output name=version::${{ steps.gitversion.outputs.majorMinorPatch }}-${{ steps.gitversion.outputs.preReleaseTag }}-${{ steps.gitversion.outputs.shortSha }}"
       - uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          dockerfile: images/javascript-runner/Dockerfile
+          directory: images/javascript-runner
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -100,7 +100,7 @@ jobs:
         run: echo "::set-output name=version::${{ steps.gitversion.outputs.majorMinorPatch }}-${{ steps.gitversion.outputs.preReleaseTag }}-${{ steps.gitversion.outputs.shortSha }}"
       - uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          dockerfile: images/python-runner/Dockerfile
+          directory: images/python-runner
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -120,7 +120,7 @@ jobs:
         run: echo "::set-output name=version::${{ steps.gitversion.outputs.majorMinorPatch }}-${{ steps.gitversion.outputs.preReleaseTag }}-${{ steps.gitversion.outputs.shortSha }}"
       - uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          dockerfile: images/rust-runner/Dockerfile
+          directory: images/rust-runner
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
