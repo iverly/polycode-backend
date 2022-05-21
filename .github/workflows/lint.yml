@@ -12,4 +12,5 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: npm run nx run-many --target=lint --all=true
+      - run: npm install -g nx
+      - run: nx run-many --target=lint --all=true
