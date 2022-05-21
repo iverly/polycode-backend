@@ -22,19 +22,21 @@ export class RunnerDockerStrategy extends AbstractRunnerStrategy {
       images: [
         {
           language: Language.JAVA,
-          image: 'polycode/java-runner',
+          image: process.env['JAVA_RUNNER_IMAGE'] || 'polycode/java-runner',
         },
         {
           language: Language.JAVASCRIPT,
-          image: 'polycode/javascript-runner',
+          image:
+            process.env['JAVASCRIPT_RUNNER_IMAGE'] ||
+            'polycode/javascript-runner',
         },
         {
           language: Language.PYTHON,
-          image: 'polycode/python-runner',
+          image: process.env['PYTHON_RUNNER_IMAGE'] || 'polycode/python-runner',
         },
         {
           language: Language.RUST,
-          image: 'polycode/rust-runner',
+          image: process.env['RUST_RUNNER_IMAGE'] || 'polycode/rust-runner',
         },
       ],
     } as DockerRunnerStrategyOptions);
