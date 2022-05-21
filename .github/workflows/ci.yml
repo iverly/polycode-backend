@@ -61,6 +61,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v5
         with:
           directory: images/java-runner
+          dockerfile: images/java-runner/Dockerfile
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -81,6 +82,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v5
         with:
           directory: images/javascript-runner
+          dockerfile: images/javascript-runner/Dockerfile
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -101,6 +103,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v5
         with:
           directory: images/python-runner
+          dockerfile: images/python-runner/Dockerfile
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -121,6 +124,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v5
         with:
           directory: images/rust-runner
+          dockerfile: images/rust-runner/Dockerfile
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
