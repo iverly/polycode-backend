@@ -18,11 +18,13 @@ export class ParseUUIDOrMePipe implements PipeTransform {
     }
 
     if (id === '@me') {
-      if (!request.authorization?.subject?.internalIdentifier) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (!(request as any).authorization?.subject?.internalIdentifier) {
         throw new BadRequestException();
       }
 
-      return request.authorization?.subject?.internalIdentifier;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return (request as any).authorization?.subject?.internalIdentifier;
     }
 
     return id;
