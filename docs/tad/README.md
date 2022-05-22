@@ -23,7 +23,7 @@ I've implemented the OAuth2 protocol for the authentification because OAuth2 is 
 
 Authorization is role-based with policies like IAM on AWS. User are linked to some roles, and role giving some permissions in the application (like reading user data, submit solution). I use that implementation because by default any action is prohibited and only allowed actions can be performed.
 
-### Challenges
+#### Challenges
 
 A challenge can be a course, module or an exercise. Basically, a course includes modules and modules includes exercises.
 To validate a module, all the exercises must be completed. Same thing for courses.
