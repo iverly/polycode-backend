@@ -46,7 +46,7 @@ export class TemplateService {
       `\n\n` +
       `Please click the link below to verify your email address.` +
       `\n\n` +
-      `${process.env.PUBLIC_WWW_URL}/verify-email/{{token}}` +
+      `${process.env.PUBLIC_WWW_URL}/auth/verify/{{token}}/email` +
       `\n\n` +
       `Thank you for using our website.`;
 
