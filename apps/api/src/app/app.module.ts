@@ -53,6 +53,7 @@ import { RunnerConsumerModule } from '@polycode/runner-consumer';
       define: {
         underscored: true,
       },
+      autoLoadModels: true,
     }),
     RedisModule.forRoot({
       config: {
