@@ -34,7 +34,7 @@
     "ioredis": "^5.0.4",
     "lodash": "^4.17.21",
     "luxon": "^2.3.2",
-    "mongoose": "^6.3.2",
+    "mongoose": "^6.4.6",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
